@@ -1,0 +1,21 @@
+:root {
+  --color-primary: #6366F1; /* Indigo-500 */
+  --color-secondary: #818CF8; /* Indigo-400 */
+  --color-tertiary: #A5B4FC; /* Indigo-300 */
+  --color-background: #EEF2FF; /* Indigo-50 */
+  --color-card-background: #FFFFFF;
+  --color-text: #222222; /* Sehr dunkles Grau für anderen Text */
+  --color-heading: #4B0082; /* Dunkleres Indigo für Header */
+  --color-shadow-rgb: 99, 102, 241; /* Indigo-500 */
+}
+
+.dark {
+  --color-primary: #A855F7; /* Purple-500 */
+  --color-secondary: #C084FC; /* Purple-400 */
+  --color-tertiary: #D8B4FE; /* Purple-300 */
+  --color-background: #0F172A; /* Slate-900 */
+  --color-card-background: #1E1B4B; /* Indigo-950 */
+  --color-text: #E2E8F0; /* Slate-200 */
+  --color-heading: #C4B5FD; /* Purple-200 */
+  --color-shadow-rgb: 168, 85, 247; /* Purple-500 */
+} 

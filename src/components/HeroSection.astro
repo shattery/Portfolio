@@ -1,0 +1,91 @@
+---
+import TypingEffect from "../components/TypingEffect.jsx";
+
+const currentYear = new Date().getFullYear();
+const birthYear = 2007;
+const age = currentYear - birthYear;
+---
+
+<section
+  class="relative overflow-hidden min-h-[60vh] flex items-center justify-center p-6 md:p-12 lg:p-20 pt-20"
+>
+  <!-- Matrix Effekt -->
+  <canvas id="matrixCanvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/20 z-10"></div>
+
+  <!-- Inhalt -->
+  <div class="relative z-20 w-full max-w-5xl mx-auto text-center p-8">
+    <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+      <TypingEffect text="Hi, I am a Frontend Developer" client:load />
+    </h1>
+    <p class="text-lg mb-8 text-gray-200">
+      Hi, ich bin Hannes, {age} Jahre alt und leidenschaftlicher Frontend-Entwickler.
+      Ich liebe es, Webseiten zu gestalten, die nicht nur gut aussehen, sondern sich
+      auch gut anfühlen.
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+      <button
+        class="bg-secondary text-white px-6 py-3 rounded-full font-semibold hover:bg-primary transition-colors duration-200"
+      >
+        Kontaktiere mich
+      </button>
+      <button
+        class="border border-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-textColor hover:text-black transition-colors duration-200"
+      >
+        Meine Projekte
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Matrix Rain Script -->
+<script>
+  if (typeof window !== "undefined") {
+    window.addEventListener("DOMContentLoaded", () => {
+      const canvas = document.getElementById(
+        "matrixCanvas"
+      ) as HTMLCanvasElement;
+      if (!canvas) {
+        console.error("Matrix canvas not found!");
+        return;
+      }
+      const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const letters =
+        "アァイィウエエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const fontSize = 30;
+      const columns = canvas.width / fontSize;
+      const drops = Array.from({ length: columns }).fill(1);
+
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "#0f0";
+        ctx.font = fontSize + "px monospace";
+
+        drops.forEach((y, x) => {
+          const text = letters[Math.floor(Math.random() * letters.length)];
+          ctx.fillText(text, x * fontSize, y * fontSize);
+
+          if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[x] = 0;
+          }
+          (drops[x] as number)++;
+        });
+      }
+
+      setInterval(draw, 33);
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    });
+  }
+</script>

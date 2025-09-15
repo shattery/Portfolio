@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import About from "../components/abou.jsx";
+import Projekts from "../components/projekts.astro";
+import WaveTransition from "../components/WaveTransition.jsx";
+// Swiper-Importe entfernt
+
+// Beispielprojektdaten
+const projects = [
+  {
+    title: "🌿 Kraut & Knolle – Fiktive Restaurant-Website",
+    description:
+      "Eine moderne, fiktive Restaurant-Website mit klarem Design, ansprechender Speisekarte und Fokus auf Benutzerfreundlichkeit.",
+    languages: ["Astro", "React", "CSS", "tailwind"],
+    imageUrl: "./bilder/kraut und knolle.png",
+    detailsUrl: "/projekte/mein-erstes-projekt",
+  },
+  {
+    title: "Interaktives Dashboard",
+    description:
+      "Ein Dashboard zur Visualisierung von Daten mit interaktiven Diagrammen und Filtern.",
+    languages: ["React", "D3.js", "Node.js", "Express"],
+    imageUrl: "/images/projekt2.jpg",
+    detailsUrl: "/projekte/interaktives-dashboard",
+  },
+  {
+    title: "Mobile Kochbuch-App",
+    description:
+      "Eine mobile Anwendung für Rezepte, entwickelt für iOS und Android.",
+    languages: ["React Native", "Firebase", "Redux"],
+    imageUrl: "/images/projekt3.jpg",
+    detailsUrl: "/projekte/mobile-kochbuch-app",
+  },
+];
+---
+
+<Layout>
+  <main class="bg-background text-textColor min-h-screen">
+    <HeroSection />
+
+    <About client:load />
+
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Meine Projekte</h2>
+        <Projekts projects={projects} />
+      </div>
+    </section>
+
+    <WaveTransition />
+  </main>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+  }
+</style>
