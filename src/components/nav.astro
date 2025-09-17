@@ -6,15 +6,16 @@ import MobileNav from "./MobileNav.jsx";
 <header
   class="relative z-20 flex justify-between items-center p-2 text-textColor bg-cardBackground shadow-default dark:shadow-dark-glow"
 >
-  <div class="flex items-center space-x-2">
-    <img src="./bilder/logo.png" alt="h.dev Logo" class="h-20 w-20" />
+  <a href="/" class="flex items-center space-x-2">
+    <img src="/bilder/logo.png" alt="h.dev Logo" class="h-20 w-20" />
     <span class="text-xl font-semibold text-headingColor">h.dev</span>
-  </div>
+  </a>
   <nav class="hidden md:block">
     <ul class="flex space-x-6">
-      <li><a href="#" class="hover:text-tertiary">Home</a></li>
-      <li><a href="#" class="hover:text-tertiary">Über uns</a></li>
-      <li><a href="#" class="hover:text-tertiary">Kontakt</a></li>
+      <li><a href="/#home" class="hover:text-tertiary">Home</a></li>
+      <li><a href="/#about" class="hover:text-tertiary">Über mich</a></li>
+      <li><a href="/#projects" class="hover:text-tertiary">Projekte</a></li>
+      <li><a href="/#contact" class="hover:text-tertiary">Kontakt</a></li>
     </ul>
   </nav>
   <div class="flex items-center md:hidden">

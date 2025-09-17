@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection.astro";
 import About from "../components/abou.jsx";
 import Projekts from "../components/projekts.astro";
 import WaveTransition from "../components/WaveTransition.jsx";
+import Reveal from "../components/Reveal.jsx";
 // Swiper-Importe entfernt
 
 // Beispielprojektdaten
@@ -14,7 +15,7 @@ const projects = [
       "Eine moderne, fiktive Restaurant-Website mit klarem Design, ansprechender Speisekarte und Fokus auf Benutzerfreundlichkeit.",
     languages: ["Astro", "React", "CSS", "tailwind"],
     imageUrl: "./bilder/kraut und knolle.png",
-    detailsUrl: "/projekte/mein-erstes-projekt",
+    detailsUrl: "/projekte/kraut-und-knolle",
   },
   {
     title: "Interaktives Dashboard",
@@ -37,16 +38,30 @@ const projects = [
 
 <Layout>
   <main class="bg-background text-textColor min-h-screen">
-    <HeroSection />
+    <div id="home" class="scroll-mt-28">
+      <Reveal variant="fade-in" client:load>
+        <HeroSection />
+      </Reveal>
+    </div>
 
-    <About client:load />
+    <div id="about" class="scroll-mt-28">
+      <Reveal variant="slide-right" client:load>
+        <About />
+      </Reveal>
+    </div>
 
-    <section class="py-16">
+    <section id="projects" class="py-16 scroll-mt-28">
       <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12">Meine Projekte</h2>
-        <Projekts projects={projects} />
+        <Reveal variant="fade-up" client:load>
+          <h2 class="text-4xl font-bold text-center mb-12">Meine Projekte</h2>
+        </Reveal>
+        <Reveal variant="zoom" delay={0.05} client:load>
+          <Projekts projects={projects} />
+        </Reveal>
       </div>
     </section>
+
+    <div id="contact" class="scroll-mt-28"></div>
 
     <WaveTransition />
   </main>

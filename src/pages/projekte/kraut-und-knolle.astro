@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjectDetails from "../../components/ProjectDetails.astro";
+---
+
+<Layout>
+  <main class="bg-background text-textColor min-h-screen">
+    <section class="pt-24 pb-16">
+      <ProjectDetails
+        title="Kraut & Knolle – Fiktive Restaurant-Website"
+        subtitle="Moderne Restaurant-Website mit Fokus auf UX"
+        imageUrl="/bilder/kraut und knolle.png"
+        date="2024-09-15"
+        description="Das Projekt Kraut & Knolle ist eine fiktive Restaurant-Website, die den Schwerpunkt auf modernes Design und eine benutzerfreundliche Darstellung legt. Ziel war es, eine authentische Restaurantpräsenz im Web zu simulieren, die sowohl optisch ansprechend als auch technisch sauber umgesetzt ist.\n\nDie Website präsentiert eine übersichtlich gestaltete Speisekarte sowie weitere Inhalte wie Startseite, Konzept und Kontakt. Durch ein responsives Layout ist die Seite auf Desktop, Tablet und Smartphone gleichermaßen nutzbar.\n\nTechnisch umgesetzt wurde das Projekt mit Astro, React und Tailwind CSS. Diese Kombination ermöglicht eine modulare Architektur und ein modernes, flexibles Styling.\n\nDieses Projekt zeigt meine Fähigkeiten in den Bereichen Frontend-Entwicklung und UI/UX-Design und eignet sich als Vorlage für reale Kundenprojekte aus dem Gastronomie-Bereich."
+        features={["Übersichtliche Speisekarte", "Responsive Layout"]}
+        technologies={["Astro", "React", "Tailwind CSS"]}
+        repoUrl="#"
+        demoUrl="https://kraut-knolle.vercel.app/"
+      />
+    </section>
+  </main>
+</Layout>
