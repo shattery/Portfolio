@@ -1,0 +1,195 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+type CertificateItem = { name: string; url: string; type?: string };
+type CertificateCategory = { category: string; items: CertificateItem[] };
+type CategoryView = {
+  category: string;
+  items: Array<CertificateItem & { type: string }>;
+};
+
+// Zertifikate-Daten (können später in eine eigene Datei ausgelagert werden)
+const CERTIFICATES: CertificateCategory[] = [
+  {
+    category: "HTML",
+    items: [
+      { name: "Learn HTML Course", url: "/Zertifikate/Learn HTML Course.pdf" },
+      {
+        name: "Learn HTML Fundamentals Course",
+        url: "/Zertifikate/Learn HTML Fundamentals Course.pdf",
+      },
+      {
+        name: "Learn HTML Forms Course",
+        url: "/Zertifikate/Learn HTML Forms Course.pdf",
+      },
+      {
+        name: "Learn HTML Semantic HTML Course",
+        url: "/Zertifikate/Learn HTML Semantic HTML Course.pdf",
+      },
+      {
+        name: "Learn HTML Tables Course",
+        url: "/Zertifikate/Learn HTML Tables Course.pdf",
+      },
+    ],
+  },
+  {
+    category: "CSS",
+    items: [
+      { name: "Learn CSS Course", url: "/Zertifikate/Learn CSS Course.pdf" },
+      {
+        name: "Learn CSS Box Model and Layout Course",
+        url: "/Zertifikate/Learn CSS Box Model and Layout Course.pdf",
+      },
+      {
+        name: "Learn CSS Browser Compatibility Course",
+        url: "/Zertifikate/Learn CSS Browser Compatibility Course.pdf",
+      },
+      {
+        name: "Learn CSS Colors Course",
+        url: "/Zertifikate/Learn CSS Colors Course.pdf",
+      },
+      {
+        name: "Learn CSS Introduction Course",
+        url: "/Zertifikate/Learn CSS Introduction Course.pdf",
+      },
+      {
+        name: "Learn CSS Transitions and Animations Course",
+        url: "/Zertifikate/Learn CSS Transitions and Animations Course.pdf",
+      },
+      {
+        name: "Learn CSS Typography and Fonts Course",
+        url: "/Zertifikate/Learn CSS Typography and Fonts Course.pdf",
+      },
+    ],
+  },
+  {
+    category: "JavaScript",
+    items: [
+      {
+        name: "Learn JavaScript Course",
+        url: "/Zertifikate/Learn JavaScript Course.pdf",
+      },
+    ],
+  },
+  {
+    category: "Navigation Design",
+    items: [
+      {
+        name: "Learn Navigation Design Course",
+        url: "/Zertifikate/Learn Navigation Design Course.pdf",
+      },
+    ],
+  },
+  {
+    category: "Color Design",
+    items: [
+      {
+        name: "Learn Color Design Course",
+        url: "/Zertifikate/Learn Color Design Course.pdf",
+      },
+    ],
+  },
+  {
+    category: "Generative AI",
+    items: [
+      {
+        name: "Intro to Generative AI Course",
+        url: "/Zertifikate/Intro to Generative AI Course.pdf",
+      },
+    ],
+  },
+  {
+    category: "Web Deployment",
+    items: [
+      {
+        name: "How to Deploy a Website Course",
+        url: "/Zertifikate/How to Deploy a Website Course.pdf",
+      },
+    ],
+  },
+];
+
+function inferTypeFromUrl(url: string): "image" | "pdf" | "link" {
+  const lower = (url || "").toLowerCase();
+  if (
+    lower.endsWith(".png") ||
+    lower.endsWith(".jpg") ||
+    lower.endsWith(".jpeg") ||
+    lower.endsWith(".webp")
+  )
+    return "image";
+  if (lower.endsWith(".pdf")) return "pdf";
+  return "link";
+}
+
+const categories: CategoryView[] = CERTIFICATES.map((cat) => ({
+  category: cat.category,
+  items: (cat.items || [])
+    .map((it) => ({ ...it, type: it.type || inferTypeFromUrl(it.url) }))
+    .sort((a, b) => a.name.localeCompare(b.name, "de")),
+})).sort((a, b) => a.category.localeCompare(b.category, "de"));
+---
+
+<Layout>
+  <section class="py-20 px-6 md:px-12 lg:px-20 bg-background">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between gap-4 mb-8">
+        <div>
+          <h1 class="text-4xl font-bold text-headingColor">Zertifikate</h1>
+          <p class="text-textColor/80">
+            Alle Zertifikate, sortiert nach Kategorien.
+          </p>
+        </div>
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg border border-border hover:bg-secondary/10 transition"
+        >
+          ← Zurück
+        </a>
+      </div>
+
+      <div class="space-y-10">
+        {
+          categories.map((cat) => (
+            <section>
+              <h2 class="text-2xl font-semibold text-headingColor mb-4">
+                {cat.category}
+              </h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {cat.items.map((zert) => (
+                  <article class="group relative rounded-xl border border-border bg-secondary/5 hover:bg-secondary/10 transition overflow-hidden">
+                    <div class="p-4">
+                      <div class="flex items-start justify-between gap-4">
+                        <h3 class="font-semibold text-headingColor leading-snug">
+                          {zert.name}
+                        </h3>
+                        <span class="shrink-0 px-2 py-0.5 rounded-full text-[11px] font-medium bg-secondary/20 text-headingColor uppercase">
+                          {zert.type}
+                        </span>
+                      </div>
+                      <div class="mt-3 flex items-center justify-between">
+                        <span class="text-sm text-textColor/70">
+                          {zert.url?.split("/").pop()}
+                        </span>
+                        {zert.url && (
+                          <a
+                            href={zert.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-2 text-secondary group-hover:text-primary underline"
+                          >
+                            Öffnen
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

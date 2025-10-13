@@ -5,6 +5,7 @@ import About from "../components/abou.jsx";
 import Projekts from "../components/projekts.astro";
 import WaveTransition from "../components/WaveTransition.jsx";
 import Reveal from "../components/Reveal.jsx";
+import Contact from "../components/Contact.jsx";
 // Swiper-Importe entfernt
 
 // Beispielprojektdaten
@@ -17,51 +18,41 @@ const projects = [
     imageUrl: "./bilder/kraut und knolle.png",
     detailsUrl: "/projekte/kraut-und-knolle",
   },
-  {
-    title: "Interaktives Dashboard",
-    description:
-      "Ein Dashboard zur Visualisierung von Daten mit interaktiven Diagrammen und Filtern.",
-    languages: ["React", "D3.js", "Node.js", "Express"],
-    imageUrl: "/images/projekt2.jpg",
-    detailsUrl: "/projekte/interaktives-dashboard",
-  },
-  {
-    title: "Mobile Kochbuch-App",
-    description:
-      "Eine mobile Anwendung für Rezepte, entwickelt für iOS und Android.",
-    languages: ["React Native", "Firebase", "Redux"],
-    imageUrl: "/images/projekt3.jpg",
-    detailsUrl: "/projekte/mobile-kochbuch-app",
-  },
 ];
+
+const formspreeEndpoint = "https://formspree.io/f/xblzjorp";
 ---
 
 <Layout>
   <main class="bg-background text-textColor min-h-screen">
     <div id="home" class="scroll-mt-28">
-      <Reveal variant="fade-in" client:load>
+      <Reveal variant="fade-in" client:visible>
         <HeroSection />
       </Reveal>
     </div>
 
     <div id="about" class="scroll-mt-28">
-      <Reveal variant="slide-right" client:load>
+      <Reveal variant="slide-right" client:visible>
         <About />
       </Reveal>
     </div>
 
     <section id="projects" class="py-16 scroll-mt-28">
       <div class="container mx-auto px-4">
-        <Reveal variant="fade-up" client:load>
+        <Reveal variant="fade-up" client:visible>
           <h2 class="text-4xl font-bold text-center mb-12">Meine Projekte</h2>
         </Reveal>
-        <Reveal variant="zoom" delay={0.05} client:load>
+        <Reveal variant="zoom" delay={0.05} client:visible>
           <Projekts projects={projects} />
         </Reveal>
       </div>
     </section>
 
-    <div id="contact" class="scroll-mt-28"></div>
+    <div id="contact" class="scroll-mt-28">
+      <Reveal variant="slide-left" client:visible>
+        <Contact client:visible />
+      </Reveal>
+    </div>
 
     <WaveTransition />
   </main>

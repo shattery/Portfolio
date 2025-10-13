@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+// Impressum: gesetzliche Pflichtangaben (bitte Adressdaten aktuell halten)
+
+const siteName = "h.dev";
+---
+
+<Layout>
+  <section class="py-20 px-6 md:px-12 lg:px-20 bg-background">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold text-headingColor mb-6">Impressum</h1>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        Angaben gemäß § 5 TMG
+      </h2>
+      <p class="mb-6">
+        {siteName}<br />
+        Hannes Geiß<br />
+        Am Sportheim 18<br />
+        99842 Ruhla<br />
+        Deutschland
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">Kontakt</h2>
+      <p class="mb-6">
+        E-Mail: <a class="underline" href="mailto:shattery567@gmail.com"
+          >shattery567@gmail.com</a
+        >
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        Haftung für Inhalte
+      </h2>
+      <p class="mb-6">
+        Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf
+        diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8
+        bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet,
+        übermittelte oder gespeicherte fremde Informationen zu überwachen oder
+        nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit
+        hinweisen.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        Haftung für Links
+      </h2>
+      <p class="mb-10">
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren
+        Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden
+        Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten
+        Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten
+        verantwortlich.
+      </p>
+
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg border border-border hover:bg-secondary/10 transition"
+        >← Zurück</a
+      >
+    </div>
+  </section>
+</Layout>

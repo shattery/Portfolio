@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const siteName = "h.dev";
+const contactEmail = "shattery567@gmail.com";
+---
+
+<Layout>
+  <section class="py-20 px-6 md:px-12 lg:px-20 bg-background">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold text-headingColor mb-4">
+        Datenschutzerklärung
+      </h1>
+      <p class="text-textColor/80 mb-8">
+        Diese Datenschutzerklärung informiert Sie über die Art, den Umfang und
+        Zwecke der Verarbeitung von personenbezogenen Daten innerhalb unseres
+        Onlineangebotes {siteName}.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        1. Verantwortlicher
+      </h2>
+      <p class="mb-6">
+        Verantwortlich: {siteName} · E-Mail: <a
+          class="underline"
+          href={`mailto:${contactEmail}`}>{contactEmail}</a
+        >
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">2. Hosting</h2>
+      <p class="mb-6">
+        Diese Website wird bei einem externen Dienstleister gehostet. Die auf
+        dieser Website erfassten personenbezogenen Daten werden auf den Servern
+        des Hosters verarbeitet. Dies ist erforderlich, um die Website
+        bereitzustellen (Art. 6 Abs. 1 lit. f DSGVO). Mit dem Hoster besteht ein
+        Auftragsverarbeitungsvertrag.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        3. Zugriffsdaten (Server-Logs)
+      </h2>
+      <p class="mb-6">
+        Beim Aufruf dieser Website werden automatisch Informationen durch den
+        Browser übermittelt und in sogenannten Server-Logfiles gespeichert (z.
+        B. IP-Adresse, Datum/Uhrzeit, Browsertyp, besuchte Seiten). Diese Daten
+        sind technisch erforderlich, um die Inhalte der Website korrekt
+        auszuliefern und dienen der Stabilität und Sicherheit (Art. 6 Abs. 1
+        lit. f DSGVO). Eine Zusammenführung mit anderen Datenquellen findet
+        nicht statt.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        4. Cookies und lokale Speicherung
+      </h2>
+      <p class="mb-2">
+        Diese Website verwendet keine Tracking-Cookies. Ihre Theme-Einstellung
+        (Hell/Dunkel) kann lokal in Ihrem Browser (localStorage) gespeichert
+        werden. Diese Einstellung ist nicht personenbezogen und wird nicht an
+        Server übertragen.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        5. Inhalte und Downloads
+      </h2>
+      <p class="mb-6">
+        Zertifikate und Medien (z. B. PDF-Dateien) werden lokal bereitgestellt.
+        Beim Öffnen einer Datei wird diese direkt von unserem Server geladen. Es
+        findet kein Tracking durch Drittanbieter statt.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">6. Kontakt</h2>
+      <p class="mb-6">
+        Wenn Sie uns per E-Mail kontaktieren, werden die von Ihnen übermittelten
+        Daten zur Bearbeitung der Anfrage verarbeitet (Art. 6 Abs. 1 lit. b bzw.
+        f DSGVO). Die Daten werden gelöscht, sobald sie für den Zweck ihrer
+        Verarbeitung nicht mehr erforderlich sind.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        7. Ihre Rechte
+      </h2>
+      <ul class="list-disc pl-6 space-y-1 mb-6">
+        <li>Auskunft über Ihre gespeicherten Daten</li>
+        <li>Berichtigung unrichtiger Daten</li>
+        <li>Löschung Ihrer Daten</li>
+        <li>Einschränkung der Verarbeitung</li>
+        <li>Widerspruch gegen die Verarbeitung</li>
+        <li>Datenübertragbarkeit</li>
+      </ul>
+      <p class="mb-6 text-textColor/80">
+        Sie haben zudem das Recht, sich bei einer Aufsichtsbehörde zu
+        beschweren, wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer
+        personenbezogenen Daten gegen Datenschutzrecht verstößt.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-headingColor mb-2">
+        8. Änderungen
+      </h2>
+      <p class="mb-10">
+        Wir können diese Datenschutzerklärung gelegentlich anpassen, um sie an
+        geänderte Rechtslagen oder bei Änderungen des Dienstes sowie der
+        Datenverarbeitung anzupassen.
+      </p>
+
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg border border-border hover:bg-secondary/10 transition"
+        >← Zurück</a
+      >
+    </div>
+  </section>
+</Layout>
