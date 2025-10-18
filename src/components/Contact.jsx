@@ -13,7 +13,7 @@ export default function Contact({ formspreeEndpoint } = {}) {
     const trimmedName = name.trim();
     const trimmedMessage = message.trim();
     const emailOk = /.+@.+\..+/.test(email);
-    return trimmedName.length >= 2 && emailOk && trimmedMessage.length >= 10;
+    return trimmedName.length >= 2 && emailOk && trimmedMessage.length >= 2;
   }, [name, email, message]);
 
   const handleSubmit = async (e) => {
@@ -27,10 +27,16 @@ export default function Contact({ formspreeEndpoint } = {}) {
     if (endpoint) {
       try {
         setStatus('sending');
+        // Formspree arbeitet stabil mit FormData (kein expliziter JSON-Content-Type nötig)
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+        formData.append('_subject', `Kontaktanfrage von ${name}`);
         const res = await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ name, email, message })
+          headers: { 'Accept': 'application/json' },
+          body: formData
         });
         if (!res.ok) throw new Error('Fehler beim Senden');
         setStatus('success');
@@ -39,7 +45,8 @@ export default function Contact({ formspreeEndpoint } = {}) {
         setMessage('');
       } catch (err) {
         setStatus('error');
-        setError('Senden fehlgeschlagen. Bitte später erneut versuchen.');
+        setError('Senden fehlgeschlagen. Es wird direkt übermittelt…');
+        try { e.currentTarget.submit(); } catch (_) {}
       }
       return;
     }
@@ -47,7 +54,7 @@ export default function Contact({ formspreeEndpoint } = {}) {
     // Mailto Fallback
     const subject = encodeURIComponent(`Kontaktanfrage von ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nNachricht:\n${message}`);
-    window.location.href = `mailto:your.email@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:shattery567@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -58,7 +65,14 @@ export default function Contact({ formspreeEndpoint } = {}) {
           <p className="mt-3 text-textColor/90">Haben Sie Interesse an einer Zusammenarbeit? Schreiben Sie mir eine Nachricht.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 p-6 md:p-8 shadow-lg">
+        <form
+          onSubmit={handleSubmit}
+          action={endpoint}
+          method="POST"
+          acceptCharset="UTF-8"
+          className="rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-900 p-6 md:p-8 shadow-lg"
+        >
+          <input type="hidden" name="_subject" value={`Kontaktanfrage von ${name || 'Website'}`} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1 text-headingColor" htmlFor="contact-name">Name</label>
@@ -100,7 +114,7 @@ export default function Contact({ formspreeEndpoint } = {}) {
               placeholder="Wie kann ich helfen?"
               className="w-full min-h-[160px] rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-neutral-800 text-textColor dark:text-white/90 placeholder:text-textColor/60 dark:placeholder-white/40 px-3 py-2 outline-none focus:ring-2 focus:ring-secondary"
               required
-              minLength={10}
+              minLength={2}
               name="message"
             />
           </div>

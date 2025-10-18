@@ -1,77 +1,6 @@
-import React, { useState, useMemo } from "react";
-// About-Section: Persönliche Vorstellung, Skills-Auswahl und Schnellzugriff auf Zertifikate
+import React from "react";
 
-// Normalisierte Datenstruktur für Zertifikate
-// Hinweis: Diese Datenquelle ist eine lokale Kopie. Die vollständige Liste und Darstellung
-// befindet sich auf der Seite "/zertifikate". Hier verwenden wir sie nur, um die Skills
-// zu generieren und ein Inline-Panel für eine geöffnete Kategorie zu zeigen.
-const CERTIFICATES = [
-  {
-    category: "HTML",
-    items: [
-      { name: "Learn HTML Course", url: "/Zertifikate/Learn HTML Course.pdf" },
-      { name: "Learn HTML Fundamentals Course", url: "/Zertifikate/Learn HTML Fundamentals Course.pdf" },
-      { name: "Learn HTML Forms Course", url: "/Zertifikate/Learn HTML Forms Course.pdf" },
-      { name: "Learn HTML Semantic HTML Course", url: "/Zertifikate/Learn HTML Semantic HTML Course.pdf" },
-      { name: "Learn HTML Tables Course", url: "/Zertifikate/Learn HTML Tables Course.pdf" },
-    ],
-  },
-  {
-    category: "CSS",
-    items: [
-      { name: "Learn CSS Course", url: "/Zertifikate/Learn CSS Course.pdf" },
-      { name: "Learn CSS Box Model and Layout Course", url: "/Zertifikate/Learn CSS Box Model and Layout Course.pdf" },
-      { name: "Learn CSS Browser Compatibility Course", url: "/Zertifikate/Learn CSS Browser Compatibility Course.pdf" },
-      { name: "Learn CSS Colors Course", url: "/Zertifikate/Learn CSS Colors Course.pdf" },
-      { name: "Learn CSS Introduction Course", url: "/Zertifikate/Learn CSS Introduction Course.pdf" },
-      { name: "Learn CSS Transitions and Animations Course", url: "/Zertifikate/Learn CSS Transitions and Animations Course.pdf" },
-      { name: "Learn CSS Typography and Fonts Course", url: "/Zertifikate/Learn CSS Typography and Fonts Course.pdf" },
-    ],
-  },
-  {
-    category: "JavaScript",
-    items: [{ name: "Learn JavaScript Course", url: "/Zertifikate/Learn JavaScript Course.pdf" }],
-  },
-  { category: "Navigation Design", items: [{ name: "Learn Navigation Design Course", url: "/Zertifikate/Learn Navigation Design Course.pdf" }] },
-  { category: "Color Design", items: [{ name: "Learn Color Design Course", url: "/Zertifikate/Learn Color Design Course.pdf" }] },
-  { category: "Generative AI", items: [{ name: "Intro to Generative AI Course", url: "/Zertifikate/Intro to Generative AI Course.pdf" }] },
-  { category: "Web Deployment", items: [{ name: "How to Deploy a Website Course", url: "/Zertifikate/How to Deploy a Website Course.pdf" }] },
-];
-
-// Ermittelt grob den Dateityp über die URL-Endung, um Hinweise (pdf/image/link) anzeigen zu können
-function inferTypeFromUrl(url) {
-  try {
-    const lower = (url || "").toLowerCase();
-    if (lower.endsWith(".png") || lower.endsWith(".jpg") || lower.endsWith(".jpeg") || lower.endsWith(".webp")) return "image";
-    if (lower.endsWith(".pdf")) return "pdf";
-    return "link";
-  } catch (e) {
-    console.error("Fehler beim inferTypeFromUrl:", e);
-    return "link";
-  }
-}
-
-// Hauptkomponente für den About-Bereich
 export default function About() {
-  const [openCategory, setOpenCategory] = useState(null);
-
-  // Abgeleitete, sortierte Daten mit Typerkennung
-  // - ergänzt jedes Item um ein "type"-Feld
-  // - sortiert Items alphabetisch (de-Locale)
-  // - sortiert Kategorien alphabetisch (de-Locale)
-  const categories = useMemo(() => {
-    return CERTIFICATES.map((cat) => ({
-      category: cat.category,
-      items: [...(cat.items || [])]
-        .map((it) => ({ ...it, type: it.type || inferTypeFromUrl(it.url) }))
-        .sort((a, b) => a.name.localeCompare(b.name, "de")),
-    })).sort((a, b) => a.category.localeCompare(b.category, "de"));
-  }, []);
-
-  // Die aktuell geöffnete Kategorie finden
-  const currentCategory = useMemo(() => {
-    return categories.find((cat) => cat.category === openCategory);
-  }, [openCategory, categories]);
 
   return (
     <section className="py-20 px-6 md:px-12 lg:px-20 bg-background">
@@ -106,26 +35,34 @@ export default function About() {
         <div className="flex-1">
           <h2 className="text-4xl font-bold text-headingColor mb-4">Über mich</h2>
           <p className="text-lg text-textColor mb-6">
-            Hi, ich bin Hannes, ein kreativer und leidenschaftlicher Frontend-Entwickler aus Deutschland. Ich liebe es, moderne, performante und ästhetische Webanwendungen zu bauen, die nicht nur gut aussehen, sondern sich auch richtig gut anfühlen. Mein Fokus liegt auf React, Astro, Tailwind CSS und allem, was das Web schöner macht!
+            Ich gestalte nutzerzentrierte Interfaces und löse Frontend-Probleme strukturiert: von
+            sauberer Informationsarchitektur über barrierearme Komponenten bis hin zu klaren
+            Code-Strukturen. Besonders wichtig sind mir konsistente Designs und eine gute
+            Developer Experience. Mit React, Astro und Tailwind CSS arbeite ich iterativ –
+            prototypen, testen, verbessern – und lerne dabei kontinuierlich dazu, auch in
+            Bereichen wie Performance-Optimierung.
           </p>
           <div className="mb-6">
             <h3 className="text-2xl font-semibold text-headingColor mb-2">Skills</h3>
             <div className="flex flex-wrap gap-3">
-              {categories.map(({ category }) => (
-                <button
-                  key={category}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition cursor-default ${
-                    openCategory === category
-                      ? "bg-secondary text-black"
-                      : "bg-secondary/20 text-headingColor hover:bg-secondary/40"
-                  }`}
-                  onClick={() => setOpenCategory((c) => (c === category ? null : category))}
-                  aria-expanded={openCategory === category}
-                  aria-controls={`panel-${category}`}
-                >
-                  {category}
-                </button>
-              ))}
+              <span className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/20 text-headingColor">
+                HTML
+              </span>
+              <span className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/20 text-headingColor">
+                CSS
+              </span>
+              <span className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/20 text-headingColor">
+                JavaScript
+              </span>
+              <span className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/20 text-headingColor">
+                React
+              </span>
+              <span className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/20 text-headingColor">
+                Astro
+              </span>
+              <span className="px-3 py-1 rounded-full text-sm font-medium bg-secondary/20 text-headingColor">
+                Tailwind CSS
+              </span>
             </div>
           </div>
           {/* Primärer CTA zur Zertifikate-Seite (als Link, funktioniert ohne Client-JS) */}
@@ -137,37 +74,6 @@ export default function About() {
               Zertifikate anzeigen
             </a>
           </div>
-          {/* Optionales Inline-Panel: zeigt die Items der aktuell geöffneten Kategorie */}
-          {currentCategory && (
-            <div
-              id={`panel-${currentCategory.category}`}
-              className="bg-secondary/10 border-l-4 border-secondary p-4 rounded shadow-sm"
-            >
-              <h4 className="text-xl font-semibold text-headingColor mb-3">
-                {currentCategory.category} Zertifikate
-              </h4>
-              <ul className="space-y-2">
-                {currentCategory.items.map((zert, i) => (
-                  <li key={i} className="flex items-center justify-between gap-3">
-                    <div className="min-w-0">
-                      <span className="block text-headingColor truncate">{zert.name}</span>
-                      <span className="text-xs text-textColor/70 uppercase">{zert.type}</span>
-                    </div>
-                    {zert.url && (
-                      <a
-                        href={zert.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="shrink-0 inline-flex items-center gap-2 text-secondary hover:text-primary underline"
-                      >
-                        Öffnen
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
       </div>
     </section>

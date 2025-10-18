@@ -2,7 +2,6 @@
 import Nav from "../components/nav.astro";
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
-import OverlayTransition from "../components/OverlayTransition.jsx";
 ---
 
 <!doctype html>
@@ -12,12 +11,11 @@ import OverlayTransition from "../components/OverlayTransition.jsx";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <title>h.dev</title>
   </head>
   <body class="min-h-screen bg-background text-textColor flex flex-col">
     {/* Globale Navigation & Seiten-Transition */}
     <Nav />
-    <OverlayTransition client:load />
     <div
       id="app-content"
       class="transition-opacity duration-300 ease-out opacity-100"
@@ -33,10 +31,4 @@ import OverlayTransition from "../components/OverlayTransition.jsx";
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
-
-  /* Während der Overlay-Transition den Seiteninhalt ausblenden */
-  html.overlay-active #app-content {
-    opacity: 0;
-    pointer-events: none;
-  }
 </style>
