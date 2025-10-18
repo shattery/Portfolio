@@ -7,10 +7,14 @@ const age = currentYear - birthYear;
 ---
 
 <section
-  class="relative overflow-hidden min-h-[60vh] flex items-center justify-center p-6 md:p-12 lg:p-20 pt-20"
+  class="relative overflow-hidden min-h-[60vh] flex items-center justify-center p-6 md:p-12 lg:p-20 pt-20 w-full"
 >
   <!-- Matrix Effekt -->
-  <canvas id="matrixCanvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+  <canvas
+    id="matrixCanvas"
+    class="absolute inset-0 w-full h-full z-0"
+    style="width: 100vw; height: 100%; left: 50%; transform: translateX(-50%);"
+  ></canvas>
 
   <!-- Overlay -->
   <div class="absolute inset-0 bg-black/20 z-10"></div>
@@ -60,6 +64,12 @@ const age = currentYear - birthYear;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
 
+      // Stelle sicher, dass das Canvas die volle Breite abdeckt
+      canvas.style.width = "100vw";
+      canvas.style.height = "100%";
+      canvas.style.left = "50%";
+      canvas.style.transform = "translateX(-50%)";
+
       const letters =
         "アァイィウエエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       const fontSize = 30;
@@ -91,6 +101,12 @@ const age = currentYear - birthYear;
       window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+
+        // Stelle sicher, dass das Canvas die volle Breite abdeckt
+        canvas.style.width = "100vw";
+        canvas.style.height = "100%";
+        canvas.style.left = "50%";
+        canvas.style.transform = "translateX(-50%)";
       });
     });
   }
