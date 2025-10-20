@@ -9,6 +9,12 @@
   --color-shadow-rgb: 99, 102, 241; /* Indigo-500 */
 }
 
+/* Verhindert horizontale Scrollbar */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 .dark {
   --color-primary: #A855F7; /* Purple-500 */
   --color-secondary: #C084FC; /* Purple-400 */
